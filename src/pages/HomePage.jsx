@@ -8,7 +8,7 @@ function HomePage() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios.get('https://fakestoreapi.com/products').then((response) => {
+    axios.get('http://localhost:3000/api/products').then((response) => {
       setProducts(response.data);
     });
   }, []);
@@ -29,17 +29,17 @@ function HomePage() {
                   <img className="product-image" src={product.image} />
                 </div>
 
-                <div className="product-name limit-text-to-2-lines">{product.title}</div>
+                <div className="product-name limit-text-to-2-lines">{product.name}</div>
 
                 <div className="product-rating-container">
                   <img
                     className="product-rating-stars"
-                    src={`images/ratings/rating-${Math.round(product.rating.rate * 2) * 5}.png`}
+                    src={`images/ratings/rating-${product.rating.stars * 10}.png`}
                   />
                   <div className="product-rating-count link-primary">{product.rating.count}</div>
                 </div>
 
-                <div className="product-price">${product.price.toFixed(2)}</div>
+                <div className="product-price">${(product.priceCents / 100).toFixed(2)}</div>
 
                 <div className="product-quantity-container">
                   <select>

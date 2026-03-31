@@ -4,17 +4,12 @@ import Header from '../components/Header';
 import checkmarkIcon from '../assets/images/icons/checkmark.png';
 import './HomePage.css';
 
-function HomePage() {
+function HomePage({ cart }) {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     axios.get('/api/products').then((response) => {
       setProducts(response.data);
-    });
-
-    axios.get('/api/cart-items').then((response) => {
-      setCart(response.data);
     });
   }, []);
 

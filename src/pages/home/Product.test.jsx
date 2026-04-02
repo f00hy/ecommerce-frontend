@@ -9,6 +9,7 @@ vi.mock('axios');
 describe('Product component', () => {
   let product;
   let loadCart;
+  let user;
 
   beforeEach(() => {
     product = {
@@ -23,10 +24,12 @@ describe('Product component', () => {
       keywords: ['socks', 'sports', 'apparel'],
     };
     loadCart = vi.fn();
+    user = userEvent.setup();
   });
 
   it('displays product details correctly', () => {
     render(<Product product={product} loadCart={loadCart} />);
+
     expect(screen.getByText('Black and Gray Athletic Cotton Socks - 6 Pairs')).toBeInTheDocument();
     expect(screen.getByText('$10.90')).toBeInTheDocument();
     expect(screen.getByTestId('product-image')).toHaveAttribute(
@@ -41,8 +44,6 @@ describe('Product component', () => {
   });
 
   it('adds product to cart', async () => {
-    const user = userEvent.setup();
-
     render(<Product product={product} loadCart={loadCart} />);
 
     const addToCartButton = screen.getByTestId('add-to-cart-button');
@@ -51,6 +52,25 @@ describe('Product component', () => {
     expect(axios.post).toHaveBeenCalledWith('/api/cart-items', {
       productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
       quantity: 1,
+    });
+    expect(loadCart).toHaveBeenCalled();
+    expect(screen.getByText('Added')).toBeVisible();
+  });
+
+  it('selects quantity', async () => {
+    render(<Product product={product} loadCart={loadCart} />);
+
+    const quantitySelector = screen.getByTestId('product-quantity-selector');
+    expect(quantitySelector).toHaveValue('1');
+
+    await user.selectOptions(quantitySelector, '2');
+    expect(quantitySelector).toHaveValue('2');
+
+    const addToCartButton = screen.getByTestId('add-to-cart-button');
+    await user.click(addToCartButton);
+    expect(axios.post).toHaveBeenCalledWith('/api/cart-items', {
+      productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
+      quantity: 2,
     });
     expect(loadCart).toHaveBeenCalled();
     expect(screen.getByText('Added')).toBeVisible();

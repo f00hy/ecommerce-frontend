@@ -1,4 +1,4 @@
-import dayjs from 'dayjs';
+import dayjs from '../../utils/dayjs';
 import { formatMoney } from '../../utils/money';
 
 function OrderHeader({ order }) {
@@ -7,7 +7,7 @@ function OrderHeader({ order }) {
       <div className="order-header-left-section">
         <div className="order-date">
           <div className="order-header-label">Order Placed:</div>
-          <div data-testid="order-date">{dayjs(order.orderTimeMs).format('MMMM D')}</div>
+          <div data-testid="order-date">{dayjs.tz(order.orderTimeMs).format('MMMM D')}</div>
         </div>
         <div className="order-total">
           <div className="order-header-label">Total:</div>

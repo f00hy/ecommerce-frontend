@@ -1,4 +1,4 @@
-import dayjs from 'dayjs';
+import dayjs from '../../utils/dayjs';
 
 function DeliveryDate({ cartItem, deliveryOptions }) {
   const selectedDeliveryOption = deliveryOptions.find((option) => {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import dayjs from 'dayjs';
+import dayjs from '../utils/dayjs';
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router';
 import Header from '../components/Header';
@@ -52,7 +52,7 @@ function TrackingPage({ cart }) {
 
           <div className="delivery-date">
             {deliveryPercent < 100 ? 'Arriving on ' : 'Delivered on '}
-            {dayjs(orderProduct.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
+            {dayjs.tz(orderProduct.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
           </div>
 
           <div className="product-info">{orderProduct.product.name}</div>

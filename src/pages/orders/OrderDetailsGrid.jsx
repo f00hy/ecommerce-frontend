@@ -1,5 +1,5 @@
 import axios from 'axios';
-import dayjs from 'dayjs';
+import dayjs from '../../utils/dayjs';
 import { Fragment } from 'react';
 import { Link } from 'react-router';
 import buyAgainIcon from '../../assets/images/icons/buy-again.png';
@@ -25,7 +25,7 @@ function OrderDetailsGrid({ order, loadCart }) {
             <div className="product-details" data-testid="order-product-details">
               <div className="product-name">{orderProduct.product.name}</div>
               <div className="product-delivery-date">
-                Arriving on: {dayjs(orderProduct.estimatedDeliveryTimeMs).format('MMMM D')}
+                Arriving on: {dayjs.tz(orderProduct.estimatedDeliveryTimeMs).format('MMMM D')}
               </div>
               <div className="product-quantity">Quantity: {orderProduct.quantity}</div>
               <button className="buy-again-button button-primary" onClick={addToCart}>

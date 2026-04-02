@@ -36,7 +36,7 @@ function DeliveryOptions({ cartItem, deliveryOptions, loadCart }) {
             />
             <div>
               <div className="delivery-option-date">
-                {dayjs(option.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
+                {dayjs.tz(option.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
               </div>
               <div className="delivery-option-price">{priceString}</div>
             </div>

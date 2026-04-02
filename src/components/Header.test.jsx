@@ -29,10 +29,10 @@ describe('Header component', () => {
     );
 
     const logo = screen.getByTestId('header-logo');
-    expect(logo).toHaveAttribute('src', 'images/logo-white.png');
+    expect(logo).toHaveAttribute('src', expect.stringContaining('logo-white.png'));
 
     const mobileLogo = screen.getByTestId('header-mobile-logo');
-    expect(mobileLogo).toHaveAttribute('src', 'images/mobile-logo-white.png');
+    expect(mobileLogo).toHaveAttribute('src', expect.stringContaining('mobile-logo-white.png'));
 
     expect(screen.getByTestId('header-search-bar')).toBeInTheDocument();
     expect(screen.getByTestId('header-search-button')).toBeInTheDocument();

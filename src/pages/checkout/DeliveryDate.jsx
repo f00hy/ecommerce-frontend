@@ -7,7 +7,8 @@ function DeliveryDate({ cartItem, deliveryOptions }) {
 
   return (
     <div className="delivery-date">
-      Delivery date: {dayjs(selectedDeliveryOption.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
+      Delivery date:{' '}
+      {dayjs.tz(selectedDeliveryOption.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
     </div>
   );
 }

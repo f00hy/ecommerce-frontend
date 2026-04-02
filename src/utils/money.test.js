@@ -1,0 +1,17 @@
+import { it, expect, describe } from 'vitest';
+import { formatMoney } from './money';
+
+describe('formatMoney function', () => {
+  it('formats 1999 cents as $19.99', () => {
+    expect(formatMoney(1999)).toBe('$19.99');
+  });
+
+  it('displays 2 decimal places', () => {
+    expect(formatMoney(1090)).toBe('$10.90');
+    expect(formatMoney(1000)).toBe('$10.00');
+  });
+
+  it('works with 0 cents', () => {
+    expect(formatMoney(0)).toBe('$0.00');
+  });
+});

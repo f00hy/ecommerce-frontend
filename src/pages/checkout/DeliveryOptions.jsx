@@ -20,13 +20,19 @@ function DeliveryOptions({ cartItem, deliveryOptions, loadCart }) {
         };
 
         return (
-          <div className="delivery-option" key={option.id} onClick={updateDeliveryOption}>
+          <div
+            className="delivery-option"
+            key={option.id}
+            onClick={updateDeliveryOption}
+            data-testid="delivery-option"
+          >
             <input
               type="radio"
               checked={option.id === cartItem.deliveryOptionId}
               onChange={() => {}}
               className="delivery-option-input"
               name={`delivery-option-${cartItem.productId}`}
+              data-testid="delivery-option-input"
             />
             <div>
               <div className="delivery-option-date">

@@ -39,12 +39,16 @@ function CartItemDetails({ cartItem, loadCart }) {
 
   return (
     <>
-      <img className="product-image" src={cartItem.product.image} />
+      <img className="product-image" data-testid="cart-item-image" src={cartItem.product.image} />
       <div className="cart-item-details">
-        <div className="product-name">{cartItem.product.name}</div>
-        <div className="product-price">{formatMoney(cartItem.product.priceCents)}</div>
+        <div className="product-name" data-testid="cart-item-name">
+          {cartItem.product.name}
+        </div>
+        <div className="product-price" data-testid="cart-item-price">
+          {formatMoney(cartItem.product.priceCents)}
+        </div>
         <div className="product-quantity">
-          <span>
+          <span data-testid="cart-item-quantity">
             Quantity:{' '}
             {isUpdatingQuantity ? (
               <input
@@ -61,7 +65,11 @@ function CartItemDetails({ cartItem, loadCart }) {
           <span className="update-quantity-link link-primary" onClick={updateQuantity}>
             Update
           </span>
-          <span className="delete-quantity-link link-primary" onClick={deleteCartItem}>
+          <span
+            className="delete-quantity-link link-primary"
+            onClick={deleteCartItem}
+            data-testid="cart-item-delete-quantity-link"
+          >
             Delete
           </span>
         </div>

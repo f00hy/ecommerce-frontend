@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink, useNavigate, useSearchParams } from 'react-router';
 import logoWhite from '../assets/images/logo-white.png';
 import mobileLogoWhite from '../assets/images/mobile-logo-white.png';
@@ -9,8 +9,12 @@ import './Header.css';
 function Header({ cart }) {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const searchText = searchParams.get('search');
+  const searchText = searchParams.get('search') || '';
   const [searchInput, setSearchInput] = useState(searchText || '');
+
+  useEffect(() => {
+    setSearchInput(searchText);
+  }, [searchText]);
 
   let totalQuantity = 0;
   cart.forEach((item) => {
@@ -23,6 +27,14 @@ function Header({ cart }) {
 
   const search = () => {
     navigate(`/?search=${searchInput}`);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      search();
+    } else if (event.key === 'Escape') {
+      setSearchInput('');
+    }
   };
 
   return (
@@ -42,6 +54,7 @@ function Header({ cart }) {
           placeholder="Search"
           value={searchInput}
           onChange={updateSearchInput}
+          onKeyDown={handleKeyDown}
         />
 
         <button className="search-button" onClick={search}>

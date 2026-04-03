@@ -4,8 +4,6 @@ This project is an **e-commerce frontend built with React**. It provides a shopp
 
 The backend source code and API documentation are available at [e-commerce backend](https://github.com/SuperSimpleDev/ecommerce-backend-ai/tree/main).
 
----
-
 ## Table of Contents
 
 - [Features](#features)
@@ -33,8 +31,6 @@ The backend source code and API documentation are available at [e-commerce backe
   - [Linting & Formatting](#linting--formatting)
 - [Acknowledgements](#acknowledgements)
 
----
-
 ## Features
 
 - **Product browsing**: View a grid of products with images, prices, and ratings.
@@ -51,8 +47,6 @@ The backend source code and API documentation are available at [e-commerce backe
   - Track delivery progress for an individual product within an order.
 
 All data is loaded from the backend API via `axios`, with time-related data handled using `dayjs` with timezone support.
-
----
 
 ## Screenshots
 
@@ -76,8 +70,6 @@ All data is loaded from the backend API via `axios`, with time-related data hand
 
 ![Tracking Page](docs/images/tracking-page.png)
 
----
-
 ## Tech Stack
 
 - **Framework**: React (with `react-dom`)
@@ -87,8 +79,6 @@ All data is loaded from the backend API via `axios`, with time-related data hand
 - **Dates & timezones**: `dayjs` (with `utc` and `timezone` plugins, defaulting to UTC) in `src/utils/dayjs.js`
 - **Testing**: Vitest + React Testing Library (`@testing-library/react`, `@testing-library/jest-dom`, `@testing-library/user-event`)
 - **Linting & formatting**: ESLint + Prettier
-
----
 
 ## Project Structure
 
@@ -118,8 +108,6 @@ Tests live alongside the components in `src/**`, using the configuration in:
 - `vitest.config.js` (Vitest + React plugin)
 - `setupTests.js` (sets up `@testing-library/jest-dom` and `dayjs` timezone)
 
----
-
 ## Routing Overview
 
 Routing is configured in `src/main.jsx` and `src/App.jsx` using `BrowserRouter`, `Routes`, and `Route` from `react-router`.
@@ -137,8 +125,6 @@ The main routes are:
 - **Fallback (`*`)** → `NotFoundPage`
 
 The cart is initially loaded in `App.jsx` via `GET /api/cart-items?expand=product` and is passed as a prop into each page that needs it.
-
----
 
 ## Backend API (Frontend Calls)
 
@@ -202,8 +188,6 @@ Used in `src/pages/TrackingPage.jsx`:
 - **Order details for tracking**
   - `GET /api/orders/:orderId?expand=products`
     - The frontend finds the specific `productId` within the order and calculates delivery progress using timestamps.
-
----
 
 ## Local Development
 
